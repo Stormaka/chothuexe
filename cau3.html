@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 3 - JavaScript Cars</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #F3EFE0;
+            color: #434242;
+            padding: 2rem;
+        }
+
+        .car-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .car-item {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .car-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 1.5rem;
+        }
+
+        .car-model {
+            font-size: 1.5rem;
+            color: #222222;
+            margin-bottom: 0.5rem;
+        }
+
+        .car-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(34, 163, 159, 0.1);
+            color: #22A39F;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .car-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-icon {
+            color: #22A39F;
+            font-size: 1.2rem;
+        }
+
+        .car-price {
+            font-size: 1.25rem;
+            color: #222222;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .price-tag {
+            color: #22A39F;
+        }
+
+        @media (max-width: 768px) {
+            .car-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="car-list" class="car-container"></div>
+
+    <script>
+        const cars = [
+            {
+                model: "Toyota Camry",
+                type: "Luxury Sedan",
+                seats: 5,
+                price: 50,
+                transmission: "Automatic",
+                image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb"
+            },
+            {
+                model: "Honda CR-V",
+                type: "Premium SUV",
+                seats: 7,
+                price: 70,
+                transmission: "Automatic",
+                image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b"
+            },
+            {
+                model: "BMW 3 Series",
+                type: "Executive",
+                seats: 5,
+                price: 100,
+                transmission: "Automatic",
+                image: "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd"
+            },
+            {
+                model: "Ford Mustang",
+                type: "Sports Car",
+                seats: 4,
+                price: 120,
+                transmission: "Automatic",
+                image: "https://images.unsplash.com/photo-1547744152-14d985cb937f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                model: "BMW",
+                type: "Sports Car",
+                seats: 4,
+                price: 220,
+                transmission: "Automatic",
+                image: "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?q=80&w=2115&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                model: "Tesla Model 3",
+                type: "Electric",
+                seats: 5,
+                price: 90,
+                transmission: "Automatic",
+                image: "https://images.unsplash.com/photo-1536700503339-1e4b06520771"
+            }
+        ];
+
+        const carList = document.getElementById('car-list');
+
+        for (let car of cars) {
+            const carDiv = document.createElement('div');
+            carDiv.className = 'car-item';
+            carDiv.innerHTML = `
+                <img src="${car.image}" alt="${car.model}" class="car-image">
+                <div class="car-info">
+                    <h2 class="car-model">${car.model}</h2>
+                    <span class="car-type">${car.type}</span>
+                    <div class="car-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>${car.seats} Seats</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">⚙️</span>
+                            <span>${car.transmission}</span>
+                        </div>
+                    </div>
+                    <div class="car-price">
+                        <span>Daily Rate</span>
+                        <span class="price-tag">$${car.price}</span>
+                    </div>
+                </div>
+            `;
+            carList.appendChild(carDiv);
+        }
+    </script>
+</body>
+</html>
